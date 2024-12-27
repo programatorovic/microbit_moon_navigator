@@ -1,0 +1,12 @@
+{
+  "name": "Moon Navigator",
+  "version": "0.0.1",
+  "description": "Extension for calculating the azimuth and angular height of the Moon using micro:bit.",
+  "dependencies": {
+    "core": "*"
+  },
+  "files": [
+    "main.ts",
+    "README.md"
+  ]
+}
