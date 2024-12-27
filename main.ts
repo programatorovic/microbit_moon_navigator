@@ -121,9 +121,24 @@ namespace moonNavigator {
         return phaseValue;
     }
 
+    function calculateNewMoonJD(year: number, month: number, day: number): number {
+        // Algoritmus na výpočet dátumu najbližšieho nového Mesiaca
+        // Použijeme aproximáciu na základe synodického mesiaca (priemerná dĺžka lunárneho cyklu)
+        const synodicMonth = 29.53058867; // Priemerná dĺžka lunárneho cyklu v dňoch
+        let k = Math.floor((year + ((month - 1) + (day / 30)) / 12 - 2000) * 12.3685);
+        let t = k / 1236.85;
+        let t2 = t * t;
+        let t3 = t2 * t;
+        let jd = 2451550.09765 + synodicMonth * k
+            + 0.0001337 * t2
+            - 0.00000015 * t3
+            + 0.00000000073 * t * t3;
+        return jd;
+    }
+
     function calculateLight(year: number, month: number, day: number, hour: number, minute: number, second: number): number {
         let jd = julianDate(year, month, day, hour, minute, second);
-        let newMoonJD = 2451550.1; // Príklad dátumu nového Mesiaca, toto by malo byť dynamické
+        let newMoonJD = calculateNewMoonJD(year, month, day);
         let daysSinceNewMoon = jd - newMoonJD;
         let light = 0;
         if (daysSinceNewMoon <= 14.765) {
@@ -131,6 +146,7 @@ namespace moonNavigator {
         } else {
             light = ((29.53 - daysSinceNewMoon) / 14.765) * 100;
         }
-    return light;
+        return light;
     }
+
 }
