@@ -47,6 +47,19 @@ Vypočíta fázu Mesiaca.
 
 - **Výstup**: Fáza Mesiaca (v percentách od -100 do 100, kde kladné hodnoty znamenajú rastúci Mesiac a záporné hodnoty znamenajú klesajúci Mesiac)
 
+### Light
+Vypočíta fázu Mesiaca.
+
+- **Vstupné parametre**:
+  - Year: Rok
+  - Month: Mesiac
+  - Day: Deň
+  - Hour: Hodina
+  - Minute: Minúta
+  - Second: Sekunda
+
+- **Výstup**: Osvetlenie Mesiaca (v percentách od 0 do 100)
+
 ## Inštalácia
 
 1. Otvorte MakeCode pre micro:bit.
@@ -65,3 +78,4 @@ Vypočíta fázu Mesiaca.
 let azimuthValue = moonNavigator.azimuth(48.1486, 17.1077, 2024, 12, 27, 16, 30, 0);
 let angularHeightValue = moonNavigator.angularHeight(48.1486, 17.1077, 2024, 12, 27, 16, 30, 0);
 let phaseValue = moonNavigator.phase(2024, 12, 27, 16, 30, 0);
+let lightValue = moonNavigator.light(2024, 12, 27, 16, 30, 0);
