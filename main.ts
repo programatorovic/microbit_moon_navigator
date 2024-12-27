@@ -108,4 +108,29 @@ namespace moonNavigator {
         }
         return phase;
     }
+
+    //% block="Light Year $year Month $month Day $day Hour $hour Minute $minute Second $second"
+    //% year.defl=2024
+    //% month.defl=1 month.min=1 month.max=12
+    //% day.defl=1 day.min=1 day.max=31
+    //% hour.defl=0 hour.min=0 hour.max=23
+    //% minute.defl=0 minute.min=0 minute.max=59
+    //% second.defl=0 second.min=0 second.max=59
+    export function Light(year: number, month: number, day: number, hour: number, minute: number, second: number): number {
+        let phaseValue = calculatePhase(year, month, day, hour, minute, second);
+        return phaseValue;
+    }
+
+    function calculateLight(year: number, month: number, day: number, hour: number, minute: number, second: number): number {
+        let jd = julianDate(year, month, day, hour, minute, second);
+        let newMoonJD = 2451550.1; // Príklad dátumu nového Mesiaca, toto by malo byť dynamické
+        let daysSinceNewMoon = jd - newMoonJD;
+        let light = 0;
+        if (daysSinceNewMoon <= 14.765) {
+            light = (daysSinceNewMoon / 14.765) * 100;
+        } else {
+            light = ((29.53 - daysSinceNewMoon) / 14.765) * 100;
+        }
+    return light;
+    }
 }
