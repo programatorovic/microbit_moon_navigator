@@ -1,6 +1,6 @@
 # Moon Navigator
 
-Moon Navigator je rozšírenie pre MakeCode pre micro:bit, ktoré umožňuje vypočítať azimut a výšku Mesiaca na základe zadaných GPS súradníc a času.
+Moon Navigator je rozšírenie pre MakeCode pre micro:bit, ktoré umožňuje vypočítať azimut, výšku a fázu Mesiaca na základe zadaných GPS súradníc a času.
 
 ## Bloky
 
@@ -34,6 +34,19 @@ Vypočíta výšku Mesiaca.
 
 - **Výstup**: Výška (v stupňoch od -180 do +180)
 
+### Phase
+Vypočíta fázu Mesiaca.
+
+- **Vstupné parametre**:
+  - Year: Rok
+  - Month: Mesiac
+  - Day: Deň
+  - Hour: Hodina
+  - Minute: Minúta
+  - Second: Sekunda
+
+- **Výstup**: Fáza Mesiaca (v percentách od -100 do 100, kde kladné hodnoty znamenajú rastúci Mesiac a záporné hodnoty znamenajú klesajúci Mesiac)
+
 ## Inštalácia
 
 1. Otvorte MakeCode pre micro:bit.
@@ -44,8 +57,11 @@ Vypočíta výšku Mesiaca.
 
 1. Pridajte blok "Azimuth" do svojho programu a zadajte požadované vstupné parametre.
 2. Pridajte blok "Angular height" do svojho programu a zadajte požadované vstupné parametre.
+3. Pridajte blok "Phase" do svojho programu a zadajte požadované vstupné parametre.
 
 ## Príklad
 
 ```typescript
-let azimuthValue = azimuth(48.1486, 17.1077, 2024, 12, 27, 16, 09, 20)
+let azimuthValue = moonNavigator.azimuth(48.1486, 17.1077, 2024, 12, 27, 16, 30, 0);
+let angularHeightValue = moonNavigator.angularHeight(48.1486, 17.1077, 2024, 12, 27, 16, 30, 0);
+let phaseValue = moonNavigator.phase(2024, 12, 27, 16, 30, 0);
