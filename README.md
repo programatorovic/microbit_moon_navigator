@@ -1,11 +1,11 @@
 # Moon Navigator
 
-Moon Navigator je rozšírenie pre MakeCode pre micro:bit, ktoré umožňuje vypočítať azimut, výšku a fázu Mesiaca na základe zadaných GPS súradníc a času.
+Moon Navigator je rozšírenie pre MakeCode pre micro:bit, ktoré umožňuje vypočítať azimut, výšku, fázu a svietivosť Mesiaca na základe zadaných GPS súradníc a času.
 
 ## Bloky
 
-### Azimuth
-Vypočíta azimut Mesiaca.
+### Set Moon
+Nastaví globálne premenné pre GPS súradnice a čas.
 
 - **Vstupné parametre**:
   - GPSX: Geografická šírka (v stupňoch)
@@ -16,49 +16,26 @@ Vypočíta azimut Mesiaca.
   - Hour: Hodina
   - Minute: Minúta
   - Second: Sekunda
+
+### Azimuth
+Vypočíta azimut Mesiaca na základe globálnych premenných.
 
 - **Výstup**: Azimut (v stupňoch od -180 do +180)
 
 ### Angular height
-Vypočíta výšku Mesiaca.
-
-- **Vstupné parametre**:
-  - GPSX: Geografická šírka (v stupňoch)
-  - GPSY: Geografická dĺžka (v stupňoch)
-  - Year: Rok
-  - Month: Mesiac
-  - Day: Deň
-  - Hour: Hodina
-  - Minute: Minúta
-  - Second: Sekunda
+Vypočíta výšku Mesiaca na základe globálnych premenných.
 
 - **Výstup**: Výška (v stupňoch od -180 do +180)
 
 ### Phase
-Vypočíta fázu Mesiaca.
-
-- **Vstupné parametre**:
-  - Year: Rok
-  - Month: Mesiac
-  - Day: Deň
-  - Hour: Hodina
-  - Minute: Minúta
-  - Second: Sekunda
+Vypočíta fázu Mesiaca na základe globálnych premenných.
 
 - **Výstup**: Fáza Mesiaca (v percentách od -100 do 100, kde kladné hodnoty znamenajú rastúci Mesiac a záporné hodnoty znamenajú klesajúci Mesiac)
 
 ### Light
-Vypočíta fázu Mesiaca.
+Vypočíta svietivosť Mesiaca na základe globálnych premenných.
 
-- **Vstupné parametre**:
-  - Year: Rok
-  - Month: Mesiac
-  - Day: Deň
-  - Hour: Hodina
-  - Minute: Minúta
-  - Second: Sekunda
-
-- **Výstup**: Osvetlenie Mesiaca (v percentách od 0 do 100)
+- **Výstup**: Svietivosť Mesiaca (v percentách, kde 0% znamená nový Mesiac a 100% znamená spln)
 
 ## Inštalácia
 
@@ -68,14 +45,17 @@ Vypočíta fázu Mesiaca.
 
 ## Použitie
 
-1. Pridajte blok "Azimuth" do svojho programu a zadajte požadované vstupné parametre.
-2. Pridajte blok "Angular height" do svojho programu a zadajte požadované vstupné parametre.
-3. Pridajte blok "Phase" do svojho programu a zadajte požadované vstupné parametre.
+1. Pridajte blok "Set Moon" do svojho programu a zadajte požadované vstupné parametre.
+2. Pridajte blok "Azimuth" do svojho programu na výpočet azimutu.
+3. Pridajte blok "Angular height" do svojho programu na výpočet výšky.
+4. Pridajte blok "Phase" do svojho programu na výpočet fázy.
+5. Pridajte blok "Light" do svojho programu na výpočet svietivosti.
 
 ## Príklad
 
 ```typescript
-let azimuthValue = moonNavigator.azimuth(48.1486, 17.1077, 2024, 12, 27, 16, 30, 0);
-let angularHeightValue = moonNavigator.angularHeight(48.1486, 17.1077, 2024, 12, 27, 16, 30, 0);
-let phaseValue = moonNavigator.phase(2024, 12, 27, 16, 30, 0);
-let lightValue = moonNavigator.light(2024, 12, 27, 16, 30, 0);
+moonNavigator.setMoon(48.1486, 17.1077, 2024, 12, 27, 16, 30, 0);
+let azimuthValue = moonNavigator.azimuth();
+let angularHeightValue = moonNavigator.angularHeight();
+let phaseValue = moonNavigator.phase();
+let lightValue = moonNavigator.light();
