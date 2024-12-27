@@ -1,4 +1,4 @@
-//% color=#0fbc11 icon="\uf0c3" block="Moon Navigator"
+//% color=#0fbc11 icon="\u263e" block="Moon Navigator"
 namespace moonNavigator {
     //% block="Azimuth GPSX $gpsx GPSY $gpsy Year $year Month $month Day $day Hour $hour Minute $minute Second $second"
     //% gpsx.defl=0 gpsx.min=-180 gpsx.max=180
